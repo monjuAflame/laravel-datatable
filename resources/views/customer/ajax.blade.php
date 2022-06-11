@@ -18,8 +18,10 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
-        <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-        <script src="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+        <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js" defer></script>
+
 
     </head>
     <body class="antialiased">
@@ -38,28 +40,16 @@
                             
                         </div>
                         <div class="card-body">
-                            <table class="table">
+                            <table class="table" id="datatable">
                                 <thead>
                                   <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">First Name</th>
                                     <th scope="col">Last Name</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">Created At</th>
-                                    <th scope="col">Updated At</th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  @foreach ($customers as $item)
-                                  <tr>
-                                    <th scope="row">No.{{ $loop->iteration }}</th>
-                                    <td>{{ $item->first_name }}</td>
-                                    <td>{{ $item->last_name }}</td>
-                                    <td>{{ $item->email }}</td>
-                                    <td>{{ $item->created_at }}</td>
-                                    <td>{{ $item->updated_at }}</td>
-                                  </tr>
-                                  @endforeach
                                 </tbody>
                               </table> 
                         </div>
@@ -67,5 +57,22 @@
                 </div>
             </div>
         </div>
+        
+        <script>
+            $(document).ready( function () {
+                $('#datatable').DataTable({
+                    "processing": true,
+                    "serviceSide": true,
+                    "ajax": "{{ route('api.customers.index') }}",
+                    "columns": [
+                        {"data": "id"},
+                        {"data": "first_name"},
+                        {"data": "last_name"},
+                        {"data": "email"},
+                    ]
+                });
+            } );
+        </script>
+
     </body>
 </html>

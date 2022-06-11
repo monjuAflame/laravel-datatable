@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\CustomerController::class, 'index'])->name('customers.index');
 Route::get('/datatable', [\App\Http\Controllers\CustomerController::class, 'datatable'])->name('customers.datatable');
+Route::get('/ajax', [\App\Http\Controllers\CustomerController::class, 'ajax'])->name('customers.ajax');
