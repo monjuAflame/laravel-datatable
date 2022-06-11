@@ -14,8 +14,8 @@ class CustomerController extends Controller
     }
     public function datatable()
     {
-    $customers = Customer::all();
-    return view('customer.datatable', compact('customers'));
+        $customers = Customer::all();
+        return view('customer.datatable', compact('customers'));
     }
 
     public function ajax()
