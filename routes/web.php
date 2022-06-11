@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\CustomerController::class, 'index'])->name('customers.index');
+Route::get('/datatable', [\App\Http\Controllers\CustomerController::class, 'datatable'])->name('customers.datatable');
