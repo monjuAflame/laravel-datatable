@@ -66,15 +66,7 @@
                         {"data": "last_name"},
                         {"data": "email"},
                     ],
-                    "columnDefs": [
-                        {
-                            "render": function ( data, type, row ) {
-                                return data +' '+ row['last_name'];
-                            },
-                            "targets": 0
-                        },
-                        {"visible": false, "targets": 1}
-                    ]
+                    "order": [[1, 'asc'], [0, 'asc']]
                 });
             } );
         </script>
