@@ -44,7 +44,6 @@
                                     <th>Full Name</th>
                                     <th>Last Name</th>
                                     <th>Email</th>
-                                    <th></th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -67,19 +66,10 @@
                         {"data": "first_name"},
                         {"data": "last_name"},
                         {"data": "email"},
-                        {"data": ""},
                     ],
-                    "columnDefs": [{
-                        targets: -1,
-                        render: function (data, type, row){
-                            return '<a href="/{{ Request::segment(1) }}/'+ row['id']+'/edit" class="btn btn-xs btn-info">Edit</a>' +
-                            '<form action="/{{ Request::segment(1) }}/'+ row['id']+'/delete" ,ethod="POST" style="display: inline">'+
-                            '<input type="hidden" name="_method" value="DELETE" />' +
-                            '<input type="hidden" name="_token" value="{{ csrf_token() }}" />' +
-                            '<input type="submit" class="btn btn-xs btn-danger" value="Delete" />'+
-                            '</form>';
-                        }
-                    }]
+                    "pageLength": 100,
+                    'dom': 'frtip',
+                    
                 });
             } );
         </script>
