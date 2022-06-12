@@ -68,7 +68,7 @@
                         {"data": "email"},
                     ],
                     "pageLength": 100,
-                    'dom': 'frtip',
+                    'lengthMenu': [10, 25, 50, 100],
                     
                 });
             } );
