@@ -11,12 +11,7 @@ class ApiController extends Controller
 {
     public function getCustomers()
     {
-        // return Datatables::of(Customer::select('id', 'first_name', 'last_name', 'email'))->toJson();
-        
-        // return Datatables::of(Customer::select('id', 'first_name', 'last_name', 'email')->limit(10)->get())->toJson();
-        
-        $query = DB::table('customers');
-
-        return DataTables::of($query)->toJson();
+        return Datatables::of(Customer::select('first_name', 'last_name', 'email'))
+                        ->toJson();
     }
 }

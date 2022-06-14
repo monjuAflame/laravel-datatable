@@ -48,6 +48,37 @@
                                 </thead>
                                 <tbody>
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td>
+                                            <input type="text" class="form-control filter-input" placeholder="Search First Name" data-column="0">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control filter-input" placeholder="Search Last Name" data-column="1">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control filter-input" placeholder="Search email" data-column="2">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <select data-column="0" class="form-control filter-select">
+                                                <option value="">Select First Name</option>
+                                                @foreach ($first_names as $f_name)
+                                                    <option value="{{ $f_name }}">{{ $f_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select data-column="1" class="form-control filter-select">
+                                                <option value="">Select Last Name</option>
+                                                @foreach ($last_names as $f_name)
+                                                    <option value="{{ $f_name }}">{{ $f_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tfoot>
                               </table> 
                         </div>
                     </div>
@@ -58,7 +89,7 @@
     
         <script>
             $(document).ready( function () {
-                $('#datatable').DataTable({
+                var table = $('#datatable').DataTable({
                     "processing": true,
                     "serviceSide": true,
                     "ajax": "{{ route('api.customers.index') }}",
@@ -66,10 +97,19 @@
                         {"data": "first_name"},
                         {"data": "last_name"},
                         {"data": "email"},
-                    ],
-                    "pageLength": 100,
-                    'lengthMenu': [10, 25, 50, 100],
-                    
+                    ]
+                });
+
+                $('.filter-input').keyup(function(){
+                    table.column( $(this).data('column'))
+                        .search( $(this).val() )
+                        .draw();
+                });
+
+                $('.filter-select').change(function(){
+                    table.column( $(this).data('column'))
+                        .search( $(this).val() )
+                        .draw();
                 });
             } );
         </script>

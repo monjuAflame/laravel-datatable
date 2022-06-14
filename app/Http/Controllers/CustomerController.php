@@ -20,6 +20,9 @@ class CustomerController extends Controller
 
     public function ajax()
     {
-        return view('customer.ajax');
+        $customers = Customer::all();
+        $first_names = Customer::orderBy('first_name')->pluck('first_name')->unique();
+        $last_names = Customer::orderBy('last_name')->pluck('last_name')->unique();
+        return view('customer.ajax', compact('customers', 'first_names', 'last_names'));
     }
 }
